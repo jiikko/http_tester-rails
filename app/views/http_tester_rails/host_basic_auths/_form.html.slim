@@ -1,0 +1,14 @@
+= form_for @host_basic_auth do |f|
+  p
+    | タイトル(なんの認証に使うのか書くといい)
+    br
+    = f.text_field :title
+  p
+    | ユーザ
+    br
+    = f.text_field :basic_auth_username
+  p
+    | パスワード
+    br
+    = f.text_field :basic_auth_password
+  p = f.submit

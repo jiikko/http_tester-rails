@@ -20,7 +20,7 @@ class HttpTesterRails::TestingHostsController < ApplicationController
     @project = HttpTesterRails::Project.find(params[:project_id])
     @testing_host = @project.testing_hosts.build(testing_host_params)
     if @testing_host.save
-      redirect_to http_tester_project_testing_host_path(@project, @testing_host), notice: '作成しました'
+      redirect_to project_testing_host_path(@project, @testing_host), notice: '作成しました'
     else
       render :new
     end
@@ -29,6 +29,6 @@ class HttpTesterRails::TestingHostsController < ApplicationController
   private
 
   def testing_host_params
-    params.required(:http_tester_testing_host).permit!
+    params.required(:testing_host).permit!
   end
 end

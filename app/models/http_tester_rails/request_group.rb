@@ -1,5 +1,5 @@
 class HttpTesterRails::RequestGroup < ActiveRecord::Base
-  include HttpMethodModule
+  include HttpTesterRails::HttpMethodModule
 
   enum device_type: %i(pc sp)
 
@@ -40,7 +40,7 @@ class HttpTesterRails::RequestGroup < ActiveRecord::Base
         self.requests.create!(
           path:        hash[:path],
           device_type: hash[:device_type],
-          http_method: HttpMethodModule::HTTP_METHOD_TABLE[hash[:method]],
+          http_method: HttpTesterRails::HttpMethodModule::HTTP_METHOD_TABLE[hash[:method]],
           status_code: hash[:status_code],
         )
       end
@@ -61,7 +61,7 @@ class HttpTesterRails::RequestGroup < ActiveRecord::Base
       limit: 1000000000, # 適当
       logs_path: nil,
       concurrency: 4,
-      basic_auth: [testing_host.basic_auth_name, testing_host.basic_auth_password],
+      basic_auth: [testing_host.host_basic_auth.basic_auth_username, testing_host.host_basic_auth.basic_auth_password],
     )
     tester
   end

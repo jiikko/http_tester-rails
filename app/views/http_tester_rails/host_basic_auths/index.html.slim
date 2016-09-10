@@ -1,0 +1,6 @@
+= link_to '新規登録する', new_host_basic_auth_path
+ul
+- @host_basic_auths.each do |host_basic_auth|
+  li
+    = host_basic_auth.title
+    = link_to '[edit]', edit_host_basic_auth_path(host_basic_auth)

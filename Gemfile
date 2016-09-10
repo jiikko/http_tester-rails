@@ -15,3 +15,7 @@ gemspec
 
 gem 'slim-rails'
 gem 'sugoi_http_request_tester', github: 'jiikko/sugoi_http_request_tester'
+gem 'jquery-rails'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem 'kaminari'

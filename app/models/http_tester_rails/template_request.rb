@@ -1,5 +1,5 @@
 class HttpTesterRails::TemplateRequest < ActiveRecord::Base
-  include HttpMethodModule
+  include HttpTesterRails::HttpMethodModule
 
   enum device_type: %i(pc sp)
 

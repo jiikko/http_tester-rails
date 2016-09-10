@@ -1,5 +1,6 @@
 HttpTesterRails::Engine.routes.draw do
   root 'projects#index'
+  resources :host_basic_auths
   resources :projects do
     resources :testing_hosts do
       resources :request_groups, only: :show
