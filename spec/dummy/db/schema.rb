@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160813075751) do
+ActiveRecord::Schema.define(version: 20160830105200) do
+
+  create_table "http_tester_rails_host_basic_auths", force: :cascade do |t|
+    t.string   "title",               null: false
+    t.string   "basic_auth_username", null: false
+    t.string   "basic_auth_password", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "http_tester_rails_projects", force: :cascade do |t|
     t.string   "name",       null: false

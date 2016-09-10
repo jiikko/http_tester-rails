@@ -16,5 +16,5 @@ h1
   p = f.text_field :allowed_failure_count
   hr
   p basic認証を選択
-  p = f.select :host_basic_auth_id, HostBasicAuth.all.map { |auth| [auth.title, auth.id] }
+  p = f.select :host_basic_auth_id, HttpTesterRails::HostBasicAuth.all.map { |auth| [auth.title, auth.id] }
   p = f.submit
