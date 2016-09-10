@@ -1,4 +1,4 @@
-# HttpTesterRails
+# SugoiHttpTesterRails
 ## Requirements
 * Job Queue System
   * example for
