@@ -12,10 +12,10 @@ class HttpTesterRails::TemplateRequestGroupsController < ApplicationController
 
   def create
     @project = HttpTesterRails::Project.find(params[:project_id])
-    @request_form = HttpTesterRails::TemplateRequestForm.new(params[:http_tester_template_request_form])
+    @request_form = HttpTesterRails::TemplateRequestForm.new(params[:template_request_form])
     if @request_form.valid?
       @request_form.delay_import
-      redirect_to http_tester_project_path(@project), notice: 'ログを取り込んでいます'
+      redirect_to project_path(@project), notice: 'ログを取り込んでいます'
     else
       render :new
     end

@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/jiikko/sugoi_http_request_tester.git
+  revision: bfe3c02571f9e94b78aec51fc145f507f4c3257b
+  specs:
+    sugoi_http_request_tester (0.0.1)
+
 PATH
   remote: .
   specs:
@@ -138,6 +144,7 @@ DEPENDENCIES
   rspec-rails
   slim-rails
   sqlite3
+  sugoi_http_request_tester!
 
 BUNDLED WITH
    1.11.2
