@@ -5,8 +5,8 @@ h1
 
 h3 テストを行う
 - @template_request_groups.order(id: :desc).each do |template_request_group|
-  p = link_to template_request_group.created_at, http_tester_project_testing_host_template_request_group_request_groups_path(@project, @testing_host, template_request_group), data: { confirm: 'HTTPリクエストを送信しますがよろしいですか？' }, method: :post
+  p = link_to template_request_group.created_at, project_testing_host_template_request_group_request_groups_path(@project, @testing_host, template_request_group), data: { confirm: 'HTTPリクエストを送信しますがよろしいですか？' }, method: :post
 
 h3 テスト済み
 - @testing_host.request_groups.order(id: :desc).each do |request_group|
-  p = link_to request_group.created_at, http_tester_project_testing_host_request_group_path(@project, @testing_host, request_group)
+  p = link_to request_group.created_at, project_testing_host_request_group_path(@project, @testing_host, request_group)

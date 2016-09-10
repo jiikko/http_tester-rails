@@ -4,9 +4,9 @@ h1
 
 / http://stackoverflow.com/questions/2718059/nested-resources-in-namespace-form-for
 - if @testing_host.new_record?
- - url = http_tester_project_testing_hosts_path(@project)
+ - url = project_testing_hosts_path(@project)
 - else
- - url = http_tester_project_testing_host_path(@project, @testing_host)
+ - url = project_testing_host_path(@project, @testing_host)
 
 = form_for @testing_host, url: url do |f|
   p ホスト名
