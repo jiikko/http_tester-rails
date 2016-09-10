@@ -1,0 +1,5 @@
+h1
+  = @project.name
+  | のテスト対象のURL上位100件
+- @template_requests.each do |template_request|
+  div = template_request.path_with_params

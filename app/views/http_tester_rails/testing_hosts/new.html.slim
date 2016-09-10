@@ -1,0 +1,20 @@
+h1
+  = @project.name
+  | のホスト登録
+
+/ http://stackoverflow.com/questions/2718059/nested-resources-in-namespace-form-for
+- if @testing_host.new_record?
+ - url = http_tester_project_testing_hosts_path(@project)
+- else
+ - url = http_tester_project_testing_host_path(@project, @testing_host)
+
+= form_for @testing_host, url: url do |f|
+  p ホスト名
+  p = f.text_field :name, required: true
+  hr
+  p サーバエラーを許容する回数
+  p = f.text_field :allowed_failure_count
+  hr
+  p basic認証を選択
+  p = f.select :host_basic_auth_id, HostBasicAuth.all.map { |auth| [auth.title, auth.id] }
+  p = f.submit

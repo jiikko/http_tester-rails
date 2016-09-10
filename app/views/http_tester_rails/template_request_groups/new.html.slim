@@ -1,0 +1,10 @@
+h1
+  = @project.name
+  | のテスト対象のURL登録
+
+= form_for @request_form, url: http_tester_project_template_request_groups_path(@project) do |f|
+  = f.hidden_field :project_id, value: @project.id
+  p ログファイル(解凍してください)
+  p = f.file_field :log_file, required: true
+
+  p = f.submit

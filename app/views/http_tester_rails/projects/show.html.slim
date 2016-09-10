@@ -1,0 +1,15 @@
+h1 = @project.name
+
+p = link_to 'テスト対象のURLをログから登録する', new_http_tester_project_template_request_group_path(@project)
+
+
+h4 テスト対象URLグループ
+- @template_request_groups.each do |template_request_group|
+  p = link_to template_request_group.created_at, http_tester_project_template_request_group_path(@project, template_request_group)
+hr
+
+p = link_to 'ホストを追加する', new_http_tester_project_testing_host_path(@project)
+
+ul
+  - @project.testing_hosts.each do |testing_host|
+    li = link_to testing_host.name, http_tester_project_testing_host_path(@project, testing_host)

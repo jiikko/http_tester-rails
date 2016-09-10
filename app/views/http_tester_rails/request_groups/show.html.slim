@@ -1,0 +1,14 @@
+h1
+  = @project.name
+  | のホスト
+  = @testing_host.name
+
+h3
+  | 合計:
+  = @request_group.requests.count
+
+h3 エラーになったURL
+- @error_requests.each do |request|
+  p
+    = request.path_with_params
+    | (#{request.status_code})
