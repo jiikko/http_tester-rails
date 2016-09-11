@@ -9,7 +9,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
-require "http_tester_rails"
+require "sugoi_http_tester_rails"
 
 module Dummy
   class Application < Rails::Application

@@ -1,4 +1,4 @@
-HttpTesterRails::Engine.routes.draw do
+SugoiHttpTesterRails::Engine.routes.draw do
   root 'projects#index'
   resources :host_basic_auths
   resources :projects do
