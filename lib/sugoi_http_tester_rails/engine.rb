@@ -1,6 +1,6 @@
-module HttpTesterRails
+module SugoiHttpTesterRails
   class Engine < ::Rails::Engine
-    isolate_namespace HttpTesterRails
+    isolate_namespace SugoiHttpTesterRails
 
    config.generators do |g|
       g.test_framework :rspec

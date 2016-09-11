@@ -1,4 +1,4 @@
-class HttpTesterRails::TemplateRequestForm
+class SugoiHttpTesterRails::TemplateRequestForm
   include ActiveModel::Model
 
   attr_accessor :log_file, :project_id
@@ -15,6 +15,6 @@ class HttpTesterRails::TemplateRequestForm
   end
 
   def delay_import
-    HttpTesterRails::Project.find(project_id).import_from(@file)
+    SugoiHttpTesterRails::Project.find(project_id).import_from(@file)
   end
 end

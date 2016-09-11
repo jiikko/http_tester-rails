@@ -1,5 +1,5 @@
-module HttpTesterRails
+module SugoiHttpTesterRails
   def self.table_name_prefix
-    'http_tester_rails'
+    'sugoi_http_tester_rails'
   end
 end

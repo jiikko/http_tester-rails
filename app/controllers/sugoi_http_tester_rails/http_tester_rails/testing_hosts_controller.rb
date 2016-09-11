@@ -1,23 +1,23 @@
-class HttpTesterRails::TestingHostsController < ApplicationController
+class SugoiHttpTesterRails::TestingHostsController < ApplicationController
   def index
-    @project = HttpTesterRails::Project.find(params[:project_id])
+    @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @testing_hosts = @project.testing_hosts.find(params[:project_id])
     @testing_host
   end
 
   def new
-    @project = HttpTesterRails::Project.find(params[:project_id])
+    @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @testing_host = @project.testing_hosts.build
   end
 
   def show
-    @project = HttpTesterRails::Project.find(params[:project_id])
+    @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @testing_host = @project.testing_hosts.find(params[:id])
-    @template_request_groups = HttpTesterRails::TemplateRequestGroup.all
+    @template_request_groups = SugoiHttpTesterRails::TemplateRequestGroup.all
   end
 
   def create
-    @project = HttpTesterRails::Project.find(params[:project_id])
+    @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @testing_host = @project.testing_hosts.build(testing_host_params)
     if @testing_host.save
       redirect_to project_testing_host_path(@project, @testing_host), notice: '作成しました'

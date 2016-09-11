@@ -1,12 +1,12 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "http_tester_rails/version"
+require "sugoi_http_tester_rails/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "http_tester_rails"
-  s.version     = HttpTesterRails::VERSION
+  s.name        = "sugoi_http_tester_rails"
+  s.version     = SugoiHttpTesterRails::VERSION
   s.authors     = ["jiikko"]
   s.email       = ["n905i.1214@gmail.com"]
   s.homepage    = "TODO"

@@ -1,6 +1,6 @@
 class CreateHttpTesterRequests < ActiveRecord::Migration
   def change
-    create_table :http_tester_rails_requests do |t|
+    create_table :sugoi_http_tester_rails_requests do |t|
       t.integer :device_type, null: false
       t.string :path, null: false
       t.text :params

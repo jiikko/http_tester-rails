@@ -1,5 +1,5 @@
-class HttpTesterRails::RequestGroup < ActiveRecord::Base
-  include HttpTesterRails::HttpMethodModule
+class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
+  include SugoiHttpTesterRails::HttpMethodModule
 
   enum device_type: %i(pc sp)
 
@@ -17,13 +17,13 @@ class HttpTesterRails::RequestGroup < ActiveRecord::Base
   end
 
   def run_http_test!(testing_host: , template_request_group: )
-    max_page = template_request_group.template_requests.count / HttpTesterRails::Project::COUNT_OF_TEST_GROUP
+    max_page = template_request_group.template_requests.count / SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP
     max_page = max_page.zero? ? 1 : max_page
     (1..max_page).each do |page|
       template_requests = template_request_group.template_requests.
         order(:id).
         page(page).
-        per(HttpTesterRails::Project::COUNT_OF_TEST_GROUP)
+        per(SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP)
       tester = build_tester
       tester.import_request_list_from(
         template_requests.map do |req|
@@ -40,7 +40,7 @@ class HttpTesterRails::RequestGroup < ActiveRecord::Base
         self.requests.create!(
           path:        hash[:path],
           device_type: hash[:device_type],
-          http_method: HttpTesterRails::HttpMethodModule::HTTP_METHOD_TABLE[hash[:method]],
+          http_method: SugoiHttpTesterRails::HttpMethodModule::HTTP_METHOD_TABLE[hash[:method]],
           status_code: hash[:status_code],
         )
       end

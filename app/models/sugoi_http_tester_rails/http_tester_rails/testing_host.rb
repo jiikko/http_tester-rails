@@ -1,4 +1,4 @@
-class HttpTesterRails::TestingHost < ActiveRecord::Base
+class SugoiHttpTesterRails::TestingHost < ActiveRecord::Base
   belongs_to :project
   belongs_to :host_basic_auth
 

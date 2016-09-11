@@ -1,4 +1,4 @@
-module HttpTesterRails::HttpMethodModule
+module SugoiHttpTesterRails::HttpMethodModule
   extend ActiveSupport::Concern
 
   included do

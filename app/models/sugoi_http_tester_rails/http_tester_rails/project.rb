@@ -1,4 +1,4 @@
-class HttpTesterRails::Project < ActiveRecord::Base
+class SugoiHttpTesterRails::Project < ActiveRecord::Base
   has_many :testing_hosts, dependent: :destroy
   has_many :template_request_groups, dependent: :destroy
 
@@ -24,7 +24,7 @@ class HttpTesterRails::Project < ActiveRecord::Base
       list.each do |hash|
         request_group.template_requests.create!(
           device_type: hash[:device_type],
-          http_method: HttpTesterRails::TemplateRequest::HTTP_METHOD_TABLE[hash[:method]] || next, # 知らないメソッドがきたらnext
+          http_method: SugoiHttpTesterRails::TemplateRequest::HTTP_METHOD_TABLE[hash[:method]] || next, # 知らないメソッドがきたらnext
           path: hash[:path],
         )
       end
