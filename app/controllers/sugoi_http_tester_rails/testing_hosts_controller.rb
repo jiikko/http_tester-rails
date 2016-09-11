@@ -2,7 +2,6 @@ class SugoiHttpTesterRails::TestingHostsController < ApplicationController
   def index
     @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @testing_hosts = @project.testing_hosts.find(params[:project_id])
-    @testing_host
   end
 
   def new

@@ -7,53 +7,69 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
 
   has_many :requests
 
+  def self.count_server_error(total_count, list)
+    list.each do |result|
+      if result && (/^5../ =~ result[:status_code].to_s)
+        total_count = total_count + 1
+      end
+    end
+    total_count
+  end
+
   def path_with_params
     return path if params.blank?
     "#{path}?#{params}"
   end
 
-  def run_http_test_with_delay!(testing_host: , template_request_group: )
-    delay.run_http_test!(testing_host: testing_host, template_request_group: template_request_group)
+  def run_http_test_with_delay!(template_request_group: )
+    delay.run_http_test!(template_request_group: template_request_group)
   end
 
-  def run_http_test!(testing_host: , template_request_group: )
-    max_page = template_request_group.template_requests.count / SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP
-    max_page = max_page.zero? ? 1 : max_page
+  def run_http_test!(template_request_group: )
+    server_error_counter = 0
     (1..max_page).each do |page|
-      template_requests = template_request_group.template_requests.
-        order(:id).
-        page(page).
-        per(SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP)
-      tester = build_tester
-      tester.import_request_list_from(
-        template_requests.map do |req|
-          { method: req.popular_http_method,
-            path: req.path_with_params,
-            path: req.path_with_params.force_encoding('UTF-8'),
-            device_type: req.device_type.to_sym,
-          }
-        end
-      )
-      list = tester.run(output_format: :array)
-      list.each do |hash|
-        next unless hash[:status_code] # GET 以外はnil
+      separate_run(page).each do |result|
+        next unless result[:status_code] # GET 以外はnilが入っているのでnextする
         self.requests.create!(
-          path:        hash[:path],
-          device_type: hash[:device_type],
-          http_method: SugoiHttpTesterRails::HttpMethodModule::HTTP_METHOD_TABLE[hash[:method]],
-          status_code: hash[:status_code],
+          path:        result[:path],
+          device_type: result[:device_type],
+          http_method: SugoiHttpTesterRails::HttpMethodModule::HTTP_METHOD_TABLE[result[:method]],
+          status_code: result[:status_code],
         )
-      end
-      # 500系のレスポンスをみつけた時点で終了する
-      list.each do |result|
-        if result && (/^5../ =~ result[:status_code].to_s)
-          return
+
+        if result && (500..599).include?(result[:status_code])
+          server_error_counter = server_error_counter + 1
+          if server_error_counter >= testing_host.allowed_failure_count
+            return
+          end
         end
       end
     end
   end
 
   private
+
+  def separate_run(page)
+    template_requests = template_request_group.template_requests.
+      order(:id).
+      page(page).
+      per(SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP)
+    tester = build_tester
+    tester.import_request_list_from(
+      template_requests.map do |req|
+        { method: req.popular_http_method,
+          path: req.path_with_params.force_encoding('UTF-8'),
+          device_type: req.device_type.to_sym,
+        }
+      end
+    )
+    tester.run(output_format: :array) # return Hash of Array
+  end
+
+  def max_page
+    m_page = template_request_group.template_requests.count / SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP
+    m_page.zero? ? 1 : m_page
+  end
 
   def build_tester
     tester = SugoiHttpRequestTester.new(
