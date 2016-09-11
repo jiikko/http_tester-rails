@@ -7,15 +7,6 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
 
   has_many :requests
 
-  def self.count_server_error(total_count, list)
-    list.each do |result|
-      if result && (/^5../ =~ result[:status_code].to_s)
-        total_count = total_count + 1
-      end
-    end
-    total_count
-  end
-
   def path_with_params
     return path if params.blank?
     "#{path}?#{params}"
