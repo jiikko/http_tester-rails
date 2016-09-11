@@ -15,6 +15,6 @@ class SugoiHttpTesterRails::TemplateRequestForm
   end
 
   def delay_import
-    SugoiHttpTesterRails::Project.find(project_id).import_from(@file)
+    SugoiHttpTesterRails::Project.find(project_id).import_from(@file.try(:tempfile))
   end
 end

@@ -10,7 +10,7 @@ class SugoiHttpTesterRails::Project < ActiveRecord::Base
     tester = SugoiHttpRequestTester.new(
       host: nil,
       limit: 1000000000, # 適当
-      logs_path: file.tempfile.path,
+      logs_path: file.path,
     )
     tester.line_parse_block = ->(line){
       /({.*})/ =~ line
