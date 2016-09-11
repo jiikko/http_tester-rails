@@ -18,3 +18,9 @@ echo 'SugoiHttpTesterRails::Project.all.create!(name: :test_project)' | rails co
 rails generate delayed_job:active_record
 rake db:migrate
 ```
+
+## Test
+```shell
+cd spec/dummy
+bundle exec rspec
+```

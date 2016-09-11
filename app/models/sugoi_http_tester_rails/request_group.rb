@@ -50,13 +50,13 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
   private
 
   def separate_run(page)
-    template_requests = template_request_group.template_requests.
-      order(:id).
-      page(page).
-      per(SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP)
     http_tester = build_http_tester
     http_tester.import_request_list_from(
-      template_requests.map do |req|
+      template_request_group.template_requests.
+        order(:id).
+        page(page).
+        per(SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP).
+        map do |req|
         { method: req.popular_http_method,
           path: req.path_with_params.force_encoding('UTF-8'),
           device_type: req.device_type.to_sym,
