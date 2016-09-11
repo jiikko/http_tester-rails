@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20160910232341) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
-  create_table "http_tester_rails_host_basic_auths", force: :cascade do |t|
+  create_table "sugoi_http_tester_rails_host_basic_auths", force: :cascade do |t|
     t.string   "title",               null: false
     t.string   "basic_auth_username", null: false
     t.string   "basic_auth_password", null: false
@@ -37,19 +37,19 @@ ActiveRecord::Schema.define(version: 20160910232341) do
     t.datetime "updated_at",          null: false
   end
 
-  create_table "http_tester_rails_projects", force: :cascade do |t|
+  create_table "sugoi_http_tester_rails_projects", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "http_tester_rails_request_groups", force: :cascade do |t|
+  create_table "sugoi_http_tester_rails_request_groups", force: :cascade do |t|
     t.integer  "testing_host_id", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  create_table "http_tester_rails_requests", force: :cascade do |t|
+  create_table "sugoi_http_tester_rails_requests", force: :cascade do |t|
     t.integer  "device_type",      null: false
     t.string   "path",             null: false
     t.text     "params"
@@ -60,13 +60,13 @@ ActiveRecord::Schema.define(version: 20160910232341) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "http_tester_rails_template_request_groups", force: :cascade do |t|
+  create_table "sugoi_http_tester_rails_template_request_groups", force: :cascade do |t|
     t.integer  "project_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "http_tester_rails_template_requests", force: :cascade do |t|
+  create_table "sugoi_http_tester_rails_template_requests", force: :cascade do |t|
     t.integer  "device_type",               null: false
     t.string   "path",                      null: false
     t.text     "params"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20160910232341) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "http_tester_rails_testing_hosts", force: :cascade do |t|
+  create_table "sugoi_http_tester_rails_testing_hosts", force: :cascade do |t|
     t.integer  "project_id",                        null: false
     t.integer  "host_basic_auth_id",                null: false
     t.string   "name",                              null: false
