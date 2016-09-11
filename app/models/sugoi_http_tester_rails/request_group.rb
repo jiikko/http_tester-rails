@@ -54,8 +54,8 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
       order(:id).
       page(page).
       per(SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP)
-    tester = build_tester
-    tester.import_request_list_from(
+    http_tester = build_http_tester
+    http_tester.import_request_list_from(
       template_requests.map do |req|
         { method: req.popular_http_method,
           path: req.path_with_params.force_encoding('UTF-8'),
@@ -63,7 +63,7 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
         }
       end
     )
-    tester.run(output_format: :array) # return Hash of Array
+    http_tester.run(output_format: :array) # return Hash of Array
   end
 
   def max_page
@@ -71,14 +71,13 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
     m_page.zero? ? 1 : m_page
   end
 
-  def build_tester
-    tester = SugoiHttpRequestTester.new(
+  def build_http_tester
+    SugoiHttpRequestTester.new(
       host: testing_host.name,
       limit: 1000000000, # 適当
       logs_path: nil,
       concurrency: 4,
       basic_auth: [testing_host.host_basic_auth.basic_auth_username, testing_host.host_basic_auth.basic_auth_password],
     )
-    tester
   end
 end
