@@ -3,7 +3,7 @@ class SugoiHttpTesterRails::TemplateRequestGroup < ActiveRecord::Base
 
   has_many :template_requests, dependent: :destroy
 
-  def separate_run(page, testing_host: )
+  def separation_run(page, testing_host: )
     http_tester = build_http_tester(testing_host: testing_host)
     http_tester.import_request_list_from(
       template_requests.

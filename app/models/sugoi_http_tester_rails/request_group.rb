@@ -19,7 +19,7 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
   def run_http_test!(template_request_group: )
     server_error_counter = 0
     (1..template_request_group.max_page_of_test_group).each do |page|
-      template_request_group.separate_run(page, testing_host: testing_host).each do |result|
+      template_request_group.separation_run(page, testing_host: testing_host).each do |result|
         next unless result[:status_code] # GET 以外はnilが入っているのでnextする
         self.requests.create!(
           path:        result[:path],
@@ -37,6 +37,4 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
       end
     end
   end
-
-  private
 end
