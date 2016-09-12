@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = SugoiHttpTesterRails::VERSION
   s.authors     = ["jiikko"]
   s.email       = ["n905i.1214@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of HttpTesterRails."
-  s.description = "TODO: Description of HttpTesterRails."
+  s.homepage    = "https://github.com/jiikko/sugoi_http_tester_rails"
+  s.summary     = "Summary of HttpTesterRails."
+  s.description = "Description of HttpTesterRails."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
