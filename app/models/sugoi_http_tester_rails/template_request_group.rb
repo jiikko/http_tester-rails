@@ -35,7 +35,7 @@ class SugoiHttpTesterRails::TemplateRequestGroup < ActiveRecord::Base
       concurrency: 4,
       basic_auth: [
         testing_host.host_basic_auth.basic_auth_username,
-        testing_host.host_basic_auth.basic_auth_password
+        testing_host.host_basic_auth.basic_auth_password,
       ],
     )
   end

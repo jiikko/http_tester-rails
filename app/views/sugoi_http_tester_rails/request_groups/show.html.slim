@@ -8,8 +8,29 @@ h3
   | 合計:
   = @request_group.requests.count
 
-h3 エラーになったURL
-- @error_requests.each do |request|
+h3 5系になったURL
+- @server_error_requests.each do |request|
+  p
+    = request.path_with_params
+    | (#{request.status_code})
+
+
+h3 4系になったURL
+- @client_error_requests.each do |request|
+  p
+    = request.path_with_params
+    | (#{request.status_code})
+
+
+h3 3系になったURL
+- @redirect_requests.each do |request|
+  p
+    = request.path_with_params
+    | (#{request.status_code})
+
+
+h3 2系になったURL
+- @success_requests.each do |request|
   p
     = request.path_with_params
     | (#{request.status_code})

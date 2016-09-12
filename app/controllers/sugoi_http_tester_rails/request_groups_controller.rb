@@ -3,7 +3,10 @@ class SugoiHttpTesterRails::RequestGroupsController < ApplicationController
     @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @testing_host = SugoiHttpTesterRails::TestingHost.find(params[:testing_host_id])
     @request_group = SugoiHttpTesterRails::RequestGroup.find(params[:id])
-    @error_requests = @request_group.requests.where(status_code: 500..510)
+    @success_requests =      @request_group.requests.where(status_code: 200..299).limit(10)
+    @redirect_requests =     @request_group.requests.where(status_code: 300..399).limit(10)
+    @client_error_requests = @request_group.requests.where(status_code: 400..499).limit(10)
+    @server_error_requests = @request_group.requests.where(status_code: 500..599)
   end
 
   def create
