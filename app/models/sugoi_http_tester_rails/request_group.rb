@@ -18,8 +18,8 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
 
   def run_http_test!(template_request_group: )
     server_error_counter = 0
-    (1..max_page).each do |page|
-      separate_run(page).each do |result|
+    (1..template_request_group.max_page_of_test_group).each do |page|
+      template_request_group.separate_run(page, testing_host: testing_host).each do |result|
         next unless result[:status_code] # GET 以外はnilが入っているのでnextする
         self.requests.create!(
           path:        result[:path],
@@ -39,36 +39,4 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
   end
 
   private
-
-  def separate_run(page)
-    http_tester = build_http_tester
-    http_tester.import_request_list_from(
-      template_request_group.template_requests.
-        order(:id).
-        page(page).
-        per(SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP).
-        map do |req|
-        { method: req.popular_http_method,
-          path: req.path_with_params.force_encoding('UTF-8'),
-          device_type: req.device_type.to_sym,
-        }
-      end
-    )
-    http_tester.run(output_format: :array) # return Hash of Array
-  end
-
-  def max_page
-    m_page = template_request_group.template_requests.count / SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP
-    m_page.zero? ? 1 : m_page
-  end
-
-  def build_http_tester
-    SugoiHttpRequestTester.new(
-      host: testing_host.name,
-      limit: 1000000000, # 適当
-      logs_path: nil,
-      concurrency: 4,
-      basic_auth: [testing_host.host_basic_auth.basic_auth_username, testing_host.host_basic_auth.basic_auth_password],
-    )
-  end
 end
