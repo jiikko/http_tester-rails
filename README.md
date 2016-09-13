@@ -9,7 +9,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sugoi_http_tester_rails', github: 'sugoi_http_tester_rails'
+gem 'sugoi_http_tester_rails', github: 'jiikko/sugoi_http_tester_rails'
 ```
 
 have to create first record of project.
