@@ -44,9 +44,10 @@ ActiveRecord::Schema.define(version: 20160910232341) do
   end
 
   create_table "sugoi_http_tester_rails_request_groups", force: :cascade do |t|
-    t.integer  "testing_host_id", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "testing_host_id",             null: false
+    t.integer  "testing_status",  default: 0, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "sugoi_http_tester_rails_requests", force: :cascade do |t|

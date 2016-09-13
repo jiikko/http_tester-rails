@@ -1,7 +1,13 @@
 class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
   include SugoiHttpTesterRails::HttpMethodModule
 
-  enum device_type: %i(pc sp)
+  enum testing_status: [
+    :status_waiting,   # エンキューしてからworker による 実行まち
+    :status_executing, # 実行中
+    :status_success,   # 全リクエストを完走した
+    :status_failure,   # サーバエラーが許容回数を超えて終了した
+    :status_aborting,  # 停止ボタンを押された
+  ]
 
   belongs_to :testing_host
 
