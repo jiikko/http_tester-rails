@@ -25,6 +25,12 @@ class SugoiHttpTesterRails::TemplateRequestGroup < ActiveRecord::Base
     max_page.zero? ? 1 : m_page
   end
 
+  def page_each
+    (1..max_page_of_test_group).each do |page|
+      yield(page)
+    end
+  end
+
   private
 
   def build_http_tester(testing_host: )
