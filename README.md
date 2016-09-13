@@ -6,8 +6,7 @@
 * sugoi_http_request_tester gem
 
 ## Installation
-### init data
-You have to create first record of project.
+have to create first record of project.
 
 ```
 echo 'SugoiHttpTesterRails::Project.all.create!(name: :test_project)' | rails console

@@ -10,5 +10,6 @@ class CreateHttpTesterRequests < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :sugoi_http_tester_rails_requests, :status_code
   end
 end

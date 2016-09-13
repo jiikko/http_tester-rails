@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20160910232341) do
     t.datetime "updated_at",       null: false
   end
 
+  add_index "sugoi_http_tester_rails_requests", ["status_code"], name: "index_sugoi_http_tester_rails_requests_on_status_code"
+
   create_table "sugoi_http_tester_rails_template_request_groups", force: :cascade do |t|
     t.integer  "project_id", null: false
     t.datetime "created_at", null: false
