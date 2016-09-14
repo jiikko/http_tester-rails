@@ -1,0 +1,6 @@
+= form_for @project do |f|
+  p
+    | プロジェクトの名前
+    br
+    = f.text_field :name
+  p = f.submit

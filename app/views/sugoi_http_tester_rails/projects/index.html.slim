@@ -1,5 +1,9 @@
+- if @projects.empty?
+  p プロジェクトがありません。新規作成してください
 ul
   - @projects.each do |project|
     li = link_to project.name, project_path(project)
 
-= link_to 'basic auth一覧', host_basic_auths_path
+hr
+p = link_to 'プロジェクトを新規作成', new_project_path
+p = link_to 'basic auth一覧', host_basic_auths_path
