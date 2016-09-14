@@ -12,7 +12,6 @@ class SugoiHttpTesterRails::TestingHostsController < ApplicationController
   def show
     @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @testing_host = @project.testing_hosts.find(params[:id])
-    @template_request_groups = SugoiHttpTesterRails::TemplateRequestGroup.all
   end
 
   def create
