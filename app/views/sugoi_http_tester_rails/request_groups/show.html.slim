@@ -8,12 +8,14 @@ h3
   | 合計:
   = @request_group.requests.count
 
+h1 ステータス
+= @request_group.testing_status
+
 h3 5系になったURL
 - @server_error_requests.each do |request|
   p
     = request.path_with_params
     | (#{request.status_code})
-
 
 h3 4系になったURL
 - @client_error_requests.each do |request|
