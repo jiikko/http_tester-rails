@@ -8,6 +8,7 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
     :status_failure,   # サーバエラーが許容回数を超えて終了した
     :status_aborting,  # 停止ボタンを押された
     :status_aborted,   # 停止ボタンを押された停止した
+    :status_crashed,   # 例外が発生した
   ]
 
   belongs_to :testing_host
@@ -52,6 +53,10 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
       end
     end
     status_success!
+  rescue => e
+    Rails.logger.info 'run_http_test! crashed '
+    Rails.logger.info e.message
+    status_crashed!
   end
 
   # 実行中のときのみにabortingする
