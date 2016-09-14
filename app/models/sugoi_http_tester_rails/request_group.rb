@@ -29,7 +29,7 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
     status_executing!
     server_error_counter = 0
     template_request_group.page_each do |page|
-      if status_aborting?
+      if self.reload && status_aborting?
         status_aborted!
         return
       end
@@ -57,14 +57,5 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
     Rails.logger.info 'run_http_test! crashed '
     Rails.logger.info e.message
     status_crashed!
-  end
-
-  # 実行中のときのみにabortingする
-  def status_aborting!
-    if status_executing?
-      super
-    else
-      false
-    end
   end
 end

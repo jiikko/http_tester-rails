@@ -13,5 +13,10 @@ h3 テストを行う
 h3 テスト済み
 - if @testing_host.request_groups.empty?
   p 実行したテストがありません
-- @testing_host.request_groups.order(id: :desc).each do |request_group|
-  p = link_to request_group.created_at, project_testing_host_request_group_path(@project, @testing_host, request_group)
+p
+  - @testing_host.request_groups.order(id: :desc).each do |request_group|
+    ul
+      li
+        = link_to request_group.created_at, project_testing_host_request_group_path(@project, @testing_host, request_group)
+        ul
+          li = request_group.testing_status

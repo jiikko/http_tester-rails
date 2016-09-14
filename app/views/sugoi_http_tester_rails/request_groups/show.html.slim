@@ -4,8 +4,11 @@ h1
   | のホスト
   = @testing_host.name
 
+- if @request_group.status_executing?
+  = link_to '停止する', request_status_abort_project_testing_host_request_group_path(@project, @testing_host, @request_group), method: :patch, data: { confirm: '停止してもいいですか？' }
+
 h3
-  | 合計:
+  | リクエスト送信数:
   = @request_group.requests.count
 
 h1 ステータス

@@ -3,7 +3,9 @@ SugoiHttpTesterRails::Engine.routes.draw do
   resources :host_basic_auths
   resources :projects do
     resources :testing_hosts do
-      resources :request_groups, only: :show
+      resources :request_groups, only: :show do
+        patch :request_status_abort, on: :member
+      end
       resources :template_request_groups do
         resources :request_groups, only: :create
       end
