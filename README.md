@@ -12,12 +12,6 @@ Add this line to your application's Gemfile:
 gem 'sugoi_http_tester_rails', github: 'jiikko/sugoi_http_tester_rails'
 ```
 
-have to create first record of project.
-
-```
-echo 'SugoiHttpTesterRails::Project.all.create!(name: :test_project)' | rails console
-```
-
 ### Delayedjob
 ```
 rails generate delayed_job:active_record
