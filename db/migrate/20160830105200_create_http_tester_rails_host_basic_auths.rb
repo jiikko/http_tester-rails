@@ -7,5 +7,11 @@ class CreateHttpTesterRailsHostBasicAuths < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    SugoiHttpTesterRails::HostBasicAuth.create(
+      title: 'no basic auth',
+      basic_auth_username: '',
+      basic_auth_password: '',
+    )
   end
 end

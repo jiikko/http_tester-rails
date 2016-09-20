@@ -26,6 +26,15 @@ Rails.application.routes.draw do
 end
 ```
 
+### in config/initializers/filter_parameter_logging.rb
+```
+Rails.application.config.filter_parameters += [
+  :password,
+  :basic_auth_username, # add
+  :basic_auth_password, # add
+]
+```
+
 ## Development
 ```
 cd spec/dummy
