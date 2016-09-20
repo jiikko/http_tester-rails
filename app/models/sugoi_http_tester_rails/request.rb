@@ -3,7 +3,7 @@ class SugoiHttpTesterRails::Request < ActiveRecord::Base
 
   enum device_type: %i(pc sp)
 
-  scope :scoped_status_codes, ->(status_code_type){
+  scope :scoped_by_status_codes, ->(status_code_type){
     where(status_code: status_code_table(status_code_type)).
     order(:status_code)
   }
