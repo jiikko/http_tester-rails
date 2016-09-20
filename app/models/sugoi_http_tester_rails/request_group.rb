@@ -15,6 +15,17 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
 
   has_many :requests
 
+  def all_counts_grouped_by_status
+    success_requests =      @request_group.requests.where(status_code: 200..299).limit(10)
+    redirect_requests =     @request_group.requests.where(status_code: 300..399).limit(10)
+    client_error_requests = @request_group.requests.where(status_code: 400..499).limit(10)
+    server_error_requests = @request_group.requests.where(status_code: 500..599)
+  end
+
+  def server_error_count_grouped_by_status
+    requests.where(status_code: 500..599).count
+  end
+
   def path_with_params
     return path if params.blank?
     "#{path}?#{params}"

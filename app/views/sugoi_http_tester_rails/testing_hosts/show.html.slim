@@ -4,6 +4,10 @@ h1
   | のホスト
   = @testing_host.name
 
+span
+  | 5系レスポンスステータス許容回数:
+  = @testing_host.allowed_failure_count
+
 h3 テストを行う
 - if @project.template_request_groups.empty?
   p プロジェクトに登録されているログファイルが未登録です。アップロードしてください

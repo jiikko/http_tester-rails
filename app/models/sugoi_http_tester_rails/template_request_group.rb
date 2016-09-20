@@ -22,7 +22,7 @@ class SugoiHttpTesterRails::TemplateRequestGroup < ActiveRecord::Base
 
   def max_page_of_test_group
     max_page = template_requests.count / SugoiHttpTesterRails::Project::COUNT_OF_TEST_GROUP
-    max_page.zero? ? 1 : m_page
+    max_page.zero? ? 1 : max_page
   end
 
   def page_each
