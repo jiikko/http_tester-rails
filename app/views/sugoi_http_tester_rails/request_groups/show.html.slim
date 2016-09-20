@@ -21,33 +21,13 @@ h1 ステータス
 
 - limit_count = 10
 h3 5系になったURL(#{@server_error_requests.count}個)
-- @server_error_requests.limit(limit_count).each do |request|
-  p
-    = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
-    | (#{request.status_code})
-  - if @server_error_requests.count > limit_count
-    p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: :server_error)
+= render 'sugoi_http_tester_rails/shared/requests', requests: @server_error_requests.limit(limit_count), limit_count: limit_count, status_code_type: :server_error
 
 h3 4系になったURL(#{@client_error_requests.count}個)
-- @client_error_requests.limit(limit_count).each do |request|
-  p
-    = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
-    | (#{request.status_code})
-  - if @client_error_requests.count > limit_count
-    p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: :client_error)
+= render 'sugoi_http_tester_rails/shared/requests', requests: @client_error_requests.limit(limit_count), limit_count: limit_count, status_code_type: :client_error
 
 h3 3系になったURL(#{@redirect_requests.count}個)
-- @redirect_requests.limit(limit_count).each do |request|
-  p
-    = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
-    | (#{request.status_code})
-  - if @redirect_requests.count > limit_count
-    p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: :redirest)
+= render 'sugoi_http_tester_rails/shared/requests', requests: @redirect_requests.limit(limit_count), limit_count: limit_count, status_code_type: :redirest
 
 h3 2系になったURL(#{@success_requests.count}個)
-- @success_requests.limit(limit_count).each do |request|
-  p
-    = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
-    | (#{request.status_code})
-  - if @success_requests.count > limit_count
-    p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: :success)
+= render 'sugoi_http_tester_rails/shared/requests', requests: @success_requests.limit(limit_count), limit_count: limit_count, status_code_type: :success

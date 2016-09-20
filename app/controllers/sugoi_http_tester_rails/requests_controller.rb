@@ -2,10 +2,10 @@ class SugoiHttpTesterRails::RequestsController < ApplicationController
   before_action :set_instances, only: :index
 
   def index
-    @status_code_type = params[:status_code_type]
+    @status_code_type = params[:status_code_type].to_sym
     @requests = @request_group.
       requests.
-      scoped_by_status_codes(@status_code_type.to_sym).
+      scoped_by_status_codes(@status_code_type).
       page(params[:page])
   end
 

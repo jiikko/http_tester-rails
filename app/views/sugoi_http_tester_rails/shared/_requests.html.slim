@@ -1,0 +1,7 @@
+- requests.each do |s_request|
+  p
+    = link_to s_request.path_with_params, "http://#{@testing_host.name}#{s_request.path_with_params}"
+    | (#{s_request.status_code})
+
+- if limit_count && requests.count > limit_count
+  p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: status_code_type)

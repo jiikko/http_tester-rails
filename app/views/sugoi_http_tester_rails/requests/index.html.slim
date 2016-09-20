@@ -11,9 +11,5 @@ h4
   = @status_code_type
   | のもっと見る
 
-- @requests.each do |request|
-  p
-    = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
-    | (#{request.status_code})
-
+= render 'sugoi_http_tester_rails/shared/requests', requests: @requests, limit_count: nil, status_code_type: @status_code_type
 = paginate @requests
