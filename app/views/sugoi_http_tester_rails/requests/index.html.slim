@@ -1,0 +1,19 @@
+= link_to :back, project_testing_host_request_group_path(@project, @testing_host, @request_group)
+
+h1
+  = @project.name
+  | のホスト
+  = @testing_host.name
+
+h4
+  = @request_group.created_at
+  p
+  = @status_code_type
+  | のもっと見る
+
+- @requests.each do |request|
+  p
+    = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
+    | (#{request.status_code})
+
+= paginate @requests

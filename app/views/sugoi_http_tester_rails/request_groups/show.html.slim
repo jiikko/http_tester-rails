@@ -3,6 +3,7 @@ h1
   = @project.name
   | のホスト
   = @testing_host.name
+h4 = @request_group.created_at
 
 span
   | 5系レスポンスステータス許容回数:
@@ -25,7 +26,7 @@ h3 5系になったURL(#{@server_error_requests.count}個)
     = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
     | (#{request.status_code})
   - if @server_error_requests.count > limit_count
-    p = link_to 'もっと見る', ''
+    p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: :server_error)
 
 h3 4系になったURL(#{@client_error_requests.count}個)
 - @client_error_requests.limit(limit_count).each do |request|
@@ -33,7 +34,7 @@ h3 4系になったURL(#{@client_error_requests.count}個)
     = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
     | (#{request.status_code})
   - if @client_error_requests.count > limit_count
-    p = link_to 'もっと見る', ''
+    p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: :client_error)
 
 h3 3系になったURL(#{@redirect_requests.count}個)
 - @redirect_requests.limit(limit_count).each do |request|
@@ -41,7 +42,7 @@ h3 3系になったURL(#{@redirect_requests.count}個)
     = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
     | (#{request.status_code})
   - if @redirect_requests.count > limit_count
-    p = link_to 'もっと見る', ''
+    p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: :redirest)
 
 h3 2系になったURL(#{@success_requests.count}個)
 - @success_requests.limit(limit_count).each do |request|
@@ -49,4 +50,4 @@ h3 2系になったURL(#{@success_requests.count}個)
     = link_to request.path_with_params, "http://#{@testing_host.name}#{request.path_with_params}"
     | (#{request.status_code})
   - if @success_requests.count > limit_count
-    p = link_to 'もっと見る', ''
+    p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: :success)

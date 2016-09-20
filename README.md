@@ -2,8 +2,10 @@
 ## Requirements
 * Job Queue System
   * example for
-    * DelayedJob
-* sugoi_http_request_tester gem
+    * delayed_job
+* gem sugoi_http_request_tester
+* gem kaminari
+* gem slim-rails
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -37,6 +39,7 @@ Rails.application.config.filter_parameters += [
 
 ## Development
 ```
+bundle exec rake db:migrate
 cd spec/dummy
 bundle exec rake jobs:work
 ```
