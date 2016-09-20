@@ -23,4 +23,6 @@ p
       li
         = link_to request_group.created_at, project_testing_host_request_group_path(@project, @testing_host, request_group)
         ul
-          li = request_group.testing_status
+          li
+            = request_group.testing_status
+            | (server_error_count: #{request_group.server_error_count_grouped_by_status})

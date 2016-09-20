@@ -3,11 +3,10 @@ class SugoiHttpTesterRails::RequestGroupsController < ApplicationController
   before_action :set_request_group, only: [:show, :request_status_abort]
 
   def show
-    counts = @request_group.count_grouped_by_status
-    @success_requests =      @request_group.requests.where(status_code: 200..299).limit(10)
-    @redirect_requests =     @request_group.requests.where(status_code: 300..399).limit(10)
-    @client_error_requests = @request_group.requests.where(status_code: 400..499).limit(10)
-    @server_error_requests = @request_group.requests.where(status_code: 500..599)
+    @success_requests =      @request_group.requests.scoped_status_codes(:success)
+    @redirect_requests =     @request_group.requests.scoped_status_codes(:redirect)
+    @client_error_requests = @request_group.requests.scoped_status_codes(:client_error)
+    @server_error_requests = @request_group.requests.scoped_status_codes(:server_error)
   end
 
   def request_status_abort
