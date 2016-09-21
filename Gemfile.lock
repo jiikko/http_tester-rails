@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/jiikko/sugoi_http_request_tester.git
-  revision: a2af9cadfaa543c0d6ea1a2db7f4b07b9c52a060
+  revision: 7b648bc386bcb2c75f98bc159fdd4d3bcf3bda03
   specs:
     sugoi_http_request_tester (0.0.1)
 
