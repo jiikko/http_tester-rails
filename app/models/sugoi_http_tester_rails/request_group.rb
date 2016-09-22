@@ -59,7 +59,7 @@ class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
     end
     status_success!
   rescue => e
-    Rails.logger.info 'run_http_test! crashed '
+    Rails.logger.info 'run_http_test! crashed'
     Rails.logger.info e.message
     status_crashed!
   end
