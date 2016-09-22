@@ -3,6 +3,9 @@ class SugoiHttpTesterRails::TemplateRequestGroupsController < ApplicationControl
     @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @request_group = @project.template_request_groups.find(params[:id])
     @template_requests = @request_group.template_requests.limit(100)
+    if params[:path].present?
+      @template_requests = @template_requests.search(params[:path])
+    end
   end
 
   def new

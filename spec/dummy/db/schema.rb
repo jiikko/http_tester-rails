@@ -70,14 +70,16 @@ ActiveRecord::Schema.define(version: 20160910232341) do
   end
 
   create_table "sugoi_http_tester_rails_template_requests", force: :cascade do |t|
-    t.integer  "device_type",               null: false
-    t.string   "path",                      null: false
+    t.integer  "device_type",                           null: false
+    t.string   "path",                      limit: 191, null: false
     t.text     "params"
-    t.integer  "http_method",               null: false
-    t.integer  "template_request_group_id", null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "http_method",                           null: false
+    t.integer  "template_request_group_id",             null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
+
+  add_index "sugoi_http_tester_rails_template_requests", ["path"], name: "index_sugoi_http_tester_rails_template_requests_on_path"
 
   create_table "sugoi_http_tester_rails_testing_hosts", force: :cascade do |t|
     t.integer  "project_id",                        null: false
