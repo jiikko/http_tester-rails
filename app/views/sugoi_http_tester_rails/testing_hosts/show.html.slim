@@ -3,6 +3,7 @@ h1
   = @project.name
   | のホスト
   = @testing_host.name
+p = link_to :edit, edit_project_testing_host_path(@project, @testing_host)
 
 span
   | 5系レスポンスステータス許容回数:

@@ -15,11 +15,26 @@ class SugoiHttpTesterRails::TestingHostsController < ApplicationController
     @request_groups = @testing_host.request_groups.order(id: :desc).page(params[:page]).per(30)
   end
 
+  def edit
+    @project = SugoiHttpTesterRails::Project.find(params[:project_id])
+    @testing_host = @project.testing_hosts.find(params[:id])
+  end
+
   def create
     @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @testing_host = @project.testing_hosts.build(testing_host_params)
     if @testing_host.save
       redirect_to project_testing_host_path(@project, @testing_host), notice: '作成しました'
+    else
+      render :new
+    end
+  end
+
+  def update
+    @project = SugoiHttpTesterRails::Project.find(params[:project_id])
+    @testing_host = @project.testing_hosts.find(params[:id])
+    if @testing_host.update(testing_host_params)
+      redirect_to project_testing_host_path(@project, @testing_host), notice: '更新しました'
     else
       render :new
     end

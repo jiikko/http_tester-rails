@@ -1,0 +1,10 @@
+= form_for [@project, @testing_host] do |f|
+  p ホスト名
+  p = f.text_field :name, required: true
+  hr
+  p サーバエラーを許容する回数
+  p = f.text_field :allowed_failure_count
+  hr
+  p basic認証を選択
+  p = f.select :host_basic_auth_id, SugoiHttpTesterRails::HostBasicAuth.all.map { |auth| [auth.title, auth.id] }
+  p = f.submit
