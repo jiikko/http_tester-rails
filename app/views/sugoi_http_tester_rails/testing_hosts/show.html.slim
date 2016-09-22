@@ -18,7 +18,7 @@ h3 テスト済み
 - if @testing_host.request_groups.empty?
   p 実行したテストがありません
 p
-  - @testing_host.request_groups.order(id: :desc).each do |request_group|
+  - @request_groups.each do |request_group|
     ul
       li
         = link_to request_group.created_at, project_testing_host_request_group_path(@project, @testing_host, request_group)
@@ -26,3 +26,5 @@ p
           li
             = request_group.testing_status
             | (server_error_count: #{request_group.server_error_count_grouped_by_status})
+
+p = paginate @request_groups

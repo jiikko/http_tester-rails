@@ -12,6 +12,7 @@ class SugoiHttpTesterRails::TestingHostsController < ApplicationController
   def show
     @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @testing_host = @project.testing_hosts.find(params[:id])
+    @request_groups = @testing_host.request_groups.order(id: :desc).page(params[:page]).per(30)
   end
 
   def create
