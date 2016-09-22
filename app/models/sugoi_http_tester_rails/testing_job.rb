@@ -1,4 +1,4 @@
-class SugoiHttpTesterRails::RequestGroup < ActiveRecord::Base
+class SugoiHttpTesterRails::TestingJob < ActiveRecord::Base
   include SugoiHttpTesterRails::HttpMethodModule
 
   enum testing_status: [

@@ -4,4 +4,4 @@
     | (#{s_request.status_code})
 
 - if limit_count && requests_count > limit_count
-  p = link_to 'もっと見る', project_testing_host_request_group_requests_path(@project, @testing_host, @request_group, status_code_type: status_code_type)
+  p = link_to 'もっと見る', project_testing_host_testing_job_requests_path(@project, @testing_host, @testing_job, status_code_type: status_code_type)

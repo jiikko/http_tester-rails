@@ -43,22 +43,15 @@ ActiveRecord::Schema.define(version: 20160910232341) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sugoi_http_tester_rails_request_groups", force: :cascade do |t|
-    t.integer  "testing_host_id",             null: false
-    t.integer  "testing_status",  default: 0, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
-
   create_table "sugoi_http_tester_rails_requests", force: :cascade do |t|
-    t.integer  "device_type",      null: false
-    t.string   "path",             null: false
+    t.integer  "device_type",    null: false
+    t.string   "path",           null: false
     t.text     "params"
-    t.integer  "http_method",      null: false
-    t.integer  "request_group_id", null: false
-    t.integer  "status_code",      null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "http_method",    null: false
+    t.integer  "testing_job_id", null: false
+    t.integer  "status_code",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "sugoi_http_tester_rails_requests", ["status_code"], name: "index_sugoi_http_tester_rails_requests_on_status_code"
@@ -88,6 +81,13 @@ ActiveRecord::Schema.define(version: 20160910232341) do
     t.integer  "allowed_failure_count", default: 0, null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+  end
+
+  create_table "sugoi_http_tester_rails_testing_jobs", force: :cascade do |t|
+    t.integer  "testing_host_id",             null: false
+    t.integer  "testing_status",  default: 0, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

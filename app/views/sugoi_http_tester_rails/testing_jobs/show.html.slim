@@ -3,21 +3,21 @@ h1
   = @project.name
   | のホスト
   = @testing_host.name
-h4 = @request_group.created_at
+h4 = @testing_job.created_at
 
 span
   | 5系レスポンスステータス許容回数:
   = @testing_host.allowed_failure_count
 
-- if @request_group.status_executing?
-  = link_to '停止する', request_status_abort_project_testing_host_request_group_path(@project, @testing_host, @request_group), method: :patch, data: { confirm: '停止してもいいですか？' }
+- if @testing_job.status_executing?
+  = link_to '停止する', request_status_abort_project_testing_host_testing_job_path(@project, @testing_host, @testing_job), method: :patch, data: { confirm: '停止してもいいですか？' }
 
 h3
   | リクエスト送信済み数:
-  = @request_group.requests.count
+  = @testing_job.requests.count
 
 h1 ステータス
-= @request_group.testing_status
+= @testing_job.testing_status
 
 - limit_count = 10
 h3 5系になったURL(#{@server_error_requests.count}個)

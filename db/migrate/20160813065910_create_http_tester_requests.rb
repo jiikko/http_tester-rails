@@ -5,7 +5,7 @@ class CreateHttpTesterRequests < ActiveRecord::Migration
       t.string :path, null: false
       t.text :params
       t.integer :http_method, null: false
-      t.integer :request_group_id, null: false
+      t.integer :testing_job_id, null: false
       t.integer :status_code, null: false
 
       t.timestamps null: false

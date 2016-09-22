@@ -3,12 +3,12 @@ SugoiHttpTesterRails::Engine.routes.draw do
   resources :host_basic_auths
   resources :projects do
     resources :testing_hosts do
-      resources :request_groups, only: :show do
+      resources :testing_jobs, only: :show do
         resources :requests, only: :index
         patch :request_status_abort, on: :member
       end
       resources :template_request_groups do
-        resources :request_groups, only: :create
+        resources :testing_jobs, only: :create
       end
     end
     resources :template_request_groups do

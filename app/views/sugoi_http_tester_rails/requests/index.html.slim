@@ -1,4 +1,4 @@
-= link_to :back, project_testing_host_request_group_path(@project, @testing_host, @request_group)
+= link_to :back, project_testing_host_testing_job_path(@project, @testing_host, @testing_job)
 
 h1
   = @project.name
@@ -6,7 +6,7 @@ h1
   = @testing_host.name
 
 h4
-  = @request_group.created_at
+  = @testing_job.created_at
   p
   = @status_code_type
   | のもっと見る
