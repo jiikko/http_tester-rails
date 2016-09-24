@@ -1,4 +1,4 @@
-class SugoiHttpTesterRails::HostBasicAuthsController < ApplicationController
+class SugoiHttpTesterRails::HostBasicAuthsController < SugoiHttpTesterRails::ApplicationController
   def index
     @host_basic_auths = SugoiHttpTesterRails::HostBasicAuth.all
   end

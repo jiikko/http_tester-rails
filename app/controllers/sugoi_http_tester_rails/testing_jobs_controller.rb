@@ -1,4 +1,4 @@
-class SugoiHttpTesterRails::TestingJobsController < ApplicationController
+class SugoiHttpTesterRails::TestingJobsController < SugoiHttpTesterRails::ApplicationController
   before_action :set_instances,     only: [:show, :request_status_abort, :create]
   before_action :set_testing_job, only: [:show, :request_status_abort]
 

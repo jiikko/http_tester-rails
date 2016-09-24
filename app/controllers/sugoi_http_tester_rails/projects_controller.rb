@@ -1,4 +1,4 @@
-class SugoiHttpTesterRails::ProjectsController < ApplicationController
+class SugoiHttpTesterRails::ProjectsController < SugoiHttpTesterRails::ApplicationController
   def index
     @projects = SugoiHttpTesterRails::Project.all
   end

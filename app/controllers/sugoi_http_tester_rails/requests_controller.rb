@@ -1,4 +1,4 @@
-class SugoiHttpTesterRails::RequestsController < ApplicationController
+class SugoiHttpTesterRails::RequestsController < SugoiHttpTesterRails::ApplicationController
   before_action :set_instances, only: :index
 
   def index
