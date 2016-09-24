@@ -1,4 +1,6 @@
 # SugoiHttpTesterRails
+This gem is rails engine for sugoi_http_request_tester.
+
 ## Requirements
 * gems
   * delayed_job
@@ -25,7 +27,8 @@ $ bundle exec rake db:migrate
 ```
 
 ## Usage
-### in config/routes.rb
+Add this line to your config/routes.rb
+
 ```ruby
 Rails.application.routes.draw do
   mount SugoiHttpTesterRails::Engine => "/http_tester"
