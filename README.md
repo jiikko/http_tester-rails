@@ -53,4 +53,5 @@ $ bundle exec rspec
 ```
 
 ## TODO
-* nesting routing
+* to shallow routing
+* create mounted sample app
