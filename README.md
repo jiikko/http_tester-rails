@@ -14,10 +14,11 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'sugoi_http_tester_rails', github: 'jiikko/sugoi_http_tester_rails'
 ```
+
 ### Delayedjob
 ```
-rails generate delayed_job:active_record
-rake db:migrate
+$ bundle exec rails generate delayed_job:active_record
+$ bundle exec rake db:migrate
 ```
 
 ### migration
@@ -37,13 +38,19 @@ end
 
 ## Development
 ```
-bundle exec rake db:migrate
-cd spec/dummy
-bundle exec rake jobs:work
+$ git clone https://github.com/jiikko/sugoi_http_tester_rails
+$ cd sugoi_http_tester_rails
+$ bundle exec rake db:migrate
+$ cd spec/dummy
+$ bundle exec rake jobs:work &
+$ bundle exec rails server
 ```
 
 ## Test
 ```shell
-cd spec/dummy
-bundle exec rspec
+$ cd spec/dummy
+$ bundle exec rspec
 ```
+
+## TODO
+* nesting routing
