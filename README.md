@@ -20,6 +20,18 @@ rails generate delayed_job:active_record
 rake db:migrate
 ```
 
+### migration files
+```
+$ bundle exec rake sugoi_http_tester_rails:install:migrations
+Copied migration 20160924020059_create_http_tester_projects.sugoi_http_tester_rails.rb from sugoi_http_tester_rails
+Copied migration 20160924020060_create_http_tester_template_requests.sugoi_http_tester_rails.rb from sugoi_http_tester_rails
+Copied migration 20160924020061_create_http_tester_template_request_groups.sugoi_http_tester_rails.rb from sugoi_http_tester_rails
+Copied migration 20160924020062_create_http_tester_testing_hosts.sugoi_http_tester_rails.rb from sugoi_http_tester_rails
+Copied migration 20160924020063_create_http_tester_requests.sugoi_http_tester_rails.rb from sugoi_http_tester_rails
+Copied migration 20160924020064_create_http_tester_testing_jobs.sugoi_http_tester_rails.rb from sugoi_http_tester_rails
+Copied migration 20160924020065_create_http_tester_rails_host_basic_auths.sugoi_http_tester_rails.rb from sugoi_http_tester_rails
+```
+
 ## Usage
 ### in config/routes.rb
 ```ruby
