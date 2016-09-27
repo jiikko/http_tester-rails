@@ -8,7 +8,10 @@ PATH
   remote: .
   specs:
     sugoi_http_tester_rails (0.0.1)
-      rails (~> 4.2.6)
+      kaminari
+      rails (> 4.2)
+      slim-rails
+      sugoi_http_request_tester
 
 GEM
   remote: https://rubygems.org/

@@ -1,11 +1,12 @@
 # SugoiHttpTesterRails
+This gem is rails engine for sugoi_http_request_tester.
+
 ## Requirements
-* Job Queue System
-  * example for
-    * delayed_job
-* gem sugoi_http_request_tester
-* gem kaminari
-* gem slim-rails
+* gems
+  * delayed_job
+  * sugoi_http_request_tester
+  * kaminari
+  * slim-rails
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -16,36 +17,41 @@ gem 'sugoi_http_tester_rails', github: 'jiikko/sugoi_http_tester_rails'
 
 ### Delayedjob
 ```
-rails generate delayed_job:active_record
-rake db:migrate
+$ bundle exec rails generate delayed_job:active_record
+$ bundle exec rake db:migrate
+```
+
+### migration
+```
+$ bundle exec rake sugoi_http_tester_rails:install:migrations
+$ bundle exec rake db:migrate
 ```
 
 ## Usage
-### in config/routes.rb
+Add this line to your config/routes.rb
+
 ```ruby
 Rails.application.routes.draw do
   mount SugoiHttpTesterRails::Engine => "/http_tester"
 end
 ```
 
-### in config/initializers/filter_parameter_logging.rb
-```
-Rails.application.config.filter_parameters += [
-  :password,
-  :basic_auth_username, # add
-  :basic_auth_password, # add
-]
-```
-
 ## Development
 ```
-bundle exec rake db:migrate
-cd spec/dummy
-bundle exec rake jobs:work
+$ git clone https://github.com/jiikko/sugoi_http_tester_rails
+$ cd sugoi_http_tester_rails
+$ bundle exec rake db:migrate
+$ cd spec/dummy
+$ bundle exec rake jobs:work &
+$ bundle exec rails server
 ```
 
 ## Test
 ```shell
-cd spec/dummy
-bundle exec rspec
+$ cd spec/dummy
+$ bundle exec rspec
 ```
+
+## TODO
+* to shallow routing
+* create mounted sample app

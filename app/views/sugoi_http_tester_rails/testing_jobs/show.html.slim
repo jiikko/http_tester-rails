@@ -1,3 +1,6 @@
+- if @testing_job.status_executing? || @testing_job.status_waiting?
+  meta http-equiv="refresh" content="3;"
+
 = link_to 'back', project_testing_host_path(@project, @testing_host)
 h1
   = @project.name

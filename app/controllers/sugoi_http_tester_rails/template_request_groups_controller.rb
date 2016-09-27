@@ -1,4 +1,4 @@
-class SugoiHttpTesterRails::TemplateRequestGroupsController < ApplicationController
+class SugoiHttpTesterRails::TemplateRequestGroupsController < SugoiHttpTesterRails::ApplicationController
   def show
     @project = SugoiHttpTesterRails::Project.find(params[:project_id])
     @request_group = @project.template_request_groups.find(params[:id])
