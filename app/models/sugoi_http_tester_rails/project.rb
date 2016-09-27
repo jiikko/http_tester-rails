@@ -27,7 +27,8 @@ class SugoiHttpTesterRails::Project < ActiveRecord::Base
         if created_hash[hash[:path]] && created_hash[hash[:path]][hash[:device_type]]
           next
         end
-        created_hash[hash[:path]] = { device_type: hash[:device_type] }
+        created_hash[hash[:path]] || (created_hash[hash[:path]] = {})
+        created_hash[hash[:path]][hash[:device_type]] = true
         request_group.template_requests.create!(
           device_type: hash[:device_type],
           http_method: SugoiHttpTesterRails::TemplateRequest::HTTP_METHOD_TABLE[hash[:method]] || next, # 知らないメソッドがきたらnext
