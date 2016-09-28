@@ -18,23 +18,21 @@ class SugoiHttpTesterRails::Project < ActiveRecord::Base
       { method: json['mt'], user_agent: json['ua'], path: json['pt'] }
     }
     tester.import_logs!
-    list_in_list = tester.export_request_list!(per: COUNT_OF_TEST_GROUP, limit_part_count: 400, export_format: :array)
+    list = tester.export_request_list!(export_format: :array)
     created_hash = {}
     request_group = template_request_groups.create!
-    list_in_list.each do |list|
-      list.each do |hash|
-        # 作成済みのレコードをオンメモリでチェックする
-        if created_hash[hash[:path]] && created_hash[hash[:path]][hash[:device_type]]
-          next
-        end
-        created_hash[hash[:path]] || (created_hash[hash[:path]] = {})
-        created_hash[hash[:path]][hash[:device_type]] = true
-        request_group.template_requests.create!(
-          device_type: hash[:device_type],
-          http_method: SugoiHttpTesterRails::TemplateRequest::HTTP_METHOD_TABLE[hash[:method]] || next, # 知らないメソッドがきたらnext
-          path: hash[:path],
-        )
+    list.each do |hash|
+      # 作成済みのレコードをオンメモリでチェックする
+      if created_hash[hash[:path]] && created_hash[hash[:path]][hash[:device_type]]
+        next
       end
+      created_hash[hash[:path]] || (created_hash[hash[:path]] = {})
+      created_hash[hash[:path]][hash[:device_type]] = true
+      request_group.template_requests.create!(
+        device_type: hash[:device_type],
+        http_method: SugoiHttpTesterRails::TemplateRequest::HTTP_METHOD_TABLE[hash[:method]] || next, # 知らないメソッドがきたらnext
+        path: hash[:path],
+      )
     end
   end
 end

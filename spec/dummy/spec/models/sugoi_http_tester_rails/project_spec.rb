@@ -14,6 +14,7 @@ describe SugoiHttpTesterRails::Project do
       project.import_from(file)
       real = project.template_request_groups.last.template_requests.count
       expect(real).to eq 3
+      file.unlink
     end
   end
 end
