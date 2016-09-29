@@ -18,7 +18,7 @@ class SugoiHttpTesterRails::Project < ActiveRecord::Base
       { method: json['mt'], user_agent: json['ua'], path: json['pt'] }
     }
     tester.import_logs!
-    list = tester.export_request_list!(export_format: :array)[80_000] # 適当に8万できる
+    list = tester.export_request_list!(export_format: :array)[1..80_000] # 適当に8万できる
     created_hash = {}
     request_group = template_request_groups.create!
     list.each do |hash|
