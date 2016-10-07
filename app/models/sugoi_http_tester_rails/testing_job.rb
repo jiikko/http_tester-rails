@@ -61,6 +61,7 @@ class SugoiHttpTesterRails::TestingJob < ActiveRecord::Base
   rescue => e
     Rails.logger.info 'run_http_test! crashed'
     Rails.logger.info e.message
+    Rails.logger.info e.backtrace.join("\n")
     status_crashed!
   end
 end
