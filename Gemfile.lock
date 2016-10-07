@@ -8,6 +8,7 @@ PATH
   remote: .
   specs:
     sugoi_http_tester_rails (0.0.1)
+      activerecord-import
       kaminari
       rails (> 4.2)
       slim-rails
