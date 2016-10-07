@@ -17,7 +17,7 @@ class SugoiHttpTesterRails::Project < ActiveRecord::Base
     private
 
     def max_page
-      max_page = @list.size / @batch_size
+      max_page = (@list.size / @batch_size.to_f).ceil
       max_page.zero? ? 1 : max_page
     end
   end

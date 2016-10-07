@@ -34,7 +34,7 @@ describe SugoiHttpTesterRails::Project do
         project = SugoiHttpTesterRails::Project.create!(name: :test_project)
         project.import_from(file)
         actual = project.template_request_groups.last.template_requests.count
-        expect(actual).to eq 4000
+        expect(actual).to eq 4002
       ensure
         file.unlink
       end
