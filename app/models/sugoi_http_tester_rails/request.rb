@@ -8,6 +8,8 @@ class SugoiHttpTesterRails::Request < ActiveRecord::Base
     order(:status_code)
   }
 
+  scope :search, ->(keyword) { where('path like ?', "%#{sanitize_sql_like(keyword)}%") }
+
   def self.status_code_table(status_code_type)
     { success:      200..299,
       redirect:     300..399,
