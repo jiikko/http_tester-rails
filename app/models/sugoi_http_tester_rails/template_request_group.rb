@@ -17,7 +17,7 @@ class SugoiHttpTesterRails::TemplateRequestGroup < ActiveRecord::Base
         }
       end
     )
-    http_tester.run(output_format: :array) # return Hash of Array
+    http_tester.run
   end
 
   def max_page_of_test_group
