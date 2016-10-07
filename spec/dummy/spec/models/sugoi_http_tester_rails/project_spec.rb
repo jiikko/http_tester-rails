@@ -21,5 +21,23 @@ describe SugoiHttpTesterRails::Project do
         file.unlink
       end
     end
+
+    it 'bulkinsertしていること' do
+      log = '{"method":"GET","user_agent":"sugou_http_request_tester 0.0.1","path":"/index%{no}","mt":"GET","ua":"ddd","pt":"/index%{no}","device_type":"pc"}'
+      lines = []
+      4002.times do |i|
+        lines << (log % { no: i })
+      end
+      begin
+        file = Tempfile.new('log')
+        File.write(file, lines.join("\n"))
+        project = SugoiHttpTesterRails::Project.create!(name: :test_project)
+        project.import_from(file)
+        actual = project.template_request_groups.last.template_requests.count
+        expect(actual).to eq 4000
+      ensure
+        file.unlink
+      end
+    end
   end
 end
