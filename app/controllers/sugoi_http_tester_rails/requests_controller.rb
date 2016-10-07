@@ -7,6 +7,10 @@ class SugoiHttpTesterRails::RequestsController < SugoiHttpTesterRails::Applicati
       requests.
       scoped_by_status_codes(@status_code_type).
       page(params[:page])
+
+    if params[:path].present?
+      @requests = @requests.search(params[:path])
+    end
   end
 
   private
