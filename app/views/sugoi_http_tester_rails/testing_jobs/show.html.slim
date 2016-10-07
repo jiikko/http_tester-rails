@@ -1,4 +1,4 @@
-- if @testing_job.status_executing? || @testing_job.status_waiting?
+- if @testing_job.status_executing? || @testing_job.status_waiting? || @testing_job.status_aborting?
   meta http-equiv="refresh" content="3;"
 
 = link_to 'back', project_testing_host_path(@project, @testing_host)
@@ -30,7 +30,7 @@ h3 4系になったURL(#{@client_error_requests.count}個)
 = render 'sugoi_http_tester_rails/shared/requests', requests: @client_error_requests.limit(limit_count), limit_count: limit_count, status_code_type: :client_error, requests_count: @client_error_requests.count
 
 h3 3系になったURL(#{@redirect_requests.count}個)
-= render 'sugoi_http_tester_rails/shared/requests', requests: @redirect_requests.limit(limit_count), limit_count: limit_count, status_code_type: :redirest, requests_count: @redirect_requests.count
+= render 'sugoi_http_tester_rails/shared/requests', requests: @redirect_requests.limit(limit_count), limit_count: limit_count, status_code_type: :redirect, requests_count: @redirect_requests.count
 
 h3 2系になったURL(#{@success_requests.count}個)
 = render 'sugoi_http_tester_rails/shared/requests', requests: @success_requests.limit(limit_count), limit_count: limit_count, status_code_type: :success, requests_count: @success_requests.count
