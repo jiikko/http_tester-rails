@@ -4,6 +4,11 @@ h1
   = @project.name
   | のホスト
   = @testing_host.name
+p = form_tag project_testing_host_testing_job_requests_path(@project, @testing_host, @testing_job), method: :get do
+  = hidden_field_tag :status_code_type, params[:status_code_type]
+  | path:
+  = text_field_tag :path, params[:path]
+  = submit_tag 'あいま検索'
 
 h4
   = @testing_job.created_at
