@@ -55,4 +55,4 @@ $ bundle exec rspec
 ## TODO
 * to shallow routing
 * extract file
-  * https://github.com/jiikko/sugoi_http_tester_rails/blob/master/app/models/sugoi_http_tester_rails/project.rb#L15
+  * https://github.com/jiikko/sugoi_http_tester_rails/blob/master/app/models/sugoi_http_tester_rails/project.rb#L42
