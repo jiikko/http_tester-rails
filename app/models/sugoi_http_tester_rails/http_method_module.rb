@@ -2,15 +2,16 @@ module SugoiHttpTesterRails::HttpMethodModule
   extend ActiveSupport::Concern
 
   included do
-    enum http_method: %i(http_get http_put http_post http_delete http_head)
+    enum http_method: %i(http_get http_put http_post http_delete http_head http_options)
   end
 
   HTTP_METHOD_TABLE = {
-    'GET'    => 'http_get',
-    'PUT'    => 'http_put',
-    'POST'   => 'http_post',
-    'DELETE' => 'http_delete',
-    'HEAD'   => 'http_head',
+    'GET'     => 'http_get',
+    'PUT'     => 'http_put',
+    'POST'    => 'http_post',
+    'DELETE'  => 'http_delete',
+    'HEAD'    => 'http_head',
+    'OPTIONS' => 'http_options',
   }
 
   def popular_http_method

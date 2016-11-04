@@ -47,9 +47,9 @@ class SugoiHttpTesterRails::Project < ActiveRecord::Base
       SugoiHttpTesterRails::TemplateRequest.import(
         part_list.map { |hash|
           SugoiHttpTesterRails::TemplateRequest.new(
-            device_type: hash[:device_type],
-            http_method: SugoiHttpTesterRails::TemplateRequest::HTTP_METHOD_TABLE[hash[:method]] || next, # 知らないメソッドがきたらnext
-            path: hash[:path],
+            device_type: hash[:device_type] || raise("unset device_type: #{hash.to_s}"),
+            http_method: SugoiHttpTesterRails::TemplateRequest::HTTP_METHOD_TABLE[hash[:method]] || raise("unset method: #{hash.to_s}"),
+            path: hash[:path] || raise("unset path: #{hash.to_s}"),
             template_request_group_id: template_request_group.id,
           )
         }
