@@ -14,7 +14,7 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem 'slim-rails'
-gem 'sugoi_http_request_tester', github: 'jiikko/sugoi_http_request_tester'
+gem 'sugoi_http_request_tester', git: 'https://github.com/jiikko/sugoi_http_request_tester'
 gem 'jquery-rails'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
